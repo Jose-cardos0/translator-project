@@ -1,7 +1,8 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useContext } from "react";
 import "./App.css";
+
+import { TesseractApp } from "./tesseract/Tesseract";
+import { MyContext } from "./context/ContextApp";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,6 +10,8 @@ function App() {
   const [selectTo, setSelectTo] = useState("");
   const [textAreaTo, setTextAreaTo] = useState("");
   const [textAreaFrom, setTextAreaFrom] = useState("");
+
+  const { text } = useContext(MyContext);
 
   const contries = [
     {
@@ -34,7 +37,7 @@ function App() {
 
   async function handletranslate() {
     fetch(
-      `https://api.mymemory.translated.net/get?q=${textAreaTo}!&langpair=${selectTo}|${selectFrom}`
+      `https://api.mymemory.translated.net/get?q=${text}!&langpair=${selectFrom}|${selectTo}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -65,8 +68,8 @@ function App() {
           >
             <div className="flex flex-col w-full">
               <select
-                value={selectTo}
-                onChange={(e) => setSelectTo(e.target.value)}
+                value={selectFrom}
+                onChange={(e) => setSelectFrom(e.target.value)}
                 name=""
                 id=""
                 className="p-3 border border-black min-w-full"
@@ -85,8 +88,8 @@ function App() {
             </div>
             <div className="flex flex-col w-full">
               <select
-                value={selectFrom}
-                onChange={(e) => setSelectFrom(e.target.value)}
+                value={selectTo}
+                onChange={(e) => setSelectTo(e.target.value)}
                 name=""
                 id=""
                 className="p-3 border
@@ -113,6 +116,7 @@ function App() {
           </button>
         </div>
       </div>
+      <TesseractApp />
     </div>
   );
 }

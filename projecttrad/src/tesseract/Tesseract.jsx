@@ -20,7 +20,7 @@ export function TesseractApp() {
       return;
     }
 
-    Tesseract.recognize(img, "pt", {
+    Tesseract.recognize(img, "eng", {
       logger: (m) => console.log(m),
     })
       .then(({ data: { text } }) => {
