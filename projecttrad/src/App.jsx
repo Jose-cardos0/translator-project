@@ -51,38 +51,52 @@ function App() {
      min-h-screen min-w-full
      bg-indigo-500 flex-col "
     >
+      <h1 className="text-white font-bold text-3xl">
+        TRANSFORME SUA IMAGEM EM TEXTO
+      </h1>
+      <div className="my-6">
+        <TesseractApp />
+      </div>
       <div
-        className="flex flex-col items-center justify-center
-        p-4 bg-white"
+        className="flex flex-col 
+       bg-white shadow-black shadow-lg min-w-96 px-5"
       >
         <div className="py-5">
-          <h1>TRADUTOR</h1>
+          <h1 className="font-semibold text-center text-indigo-600 text-xl">
+            TRADUTOR
+          </h1>
         </div>
         <div
-          className="flex flex-col
-         justify-center items-center"
+          className="flex flex-col min-h-full min-w-full m-auto
+         "
         >
           <div
             className="flex border-t-2 min-w-full
-           items-center justify-around "
+           items-center justify-around min-h-96 "
           >
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full min-h-full">
               <select
                 value={selectFrom}
                 onChange={(e) => setSelectFrom(e.target.value)}
                 name=""
                 id=""
-                className="p-3 border border-black min-w-full"
+                className="
+                min-w-full block w-full p-3 text-sm 
+                 text-indigo-900 bg-indigo-50 border
+                  border-indigo-300
+                    focus:ring-indigo-500 focus:border-indigo-500"
               >
                 {Object.keys(contries[0]).map((key, index) => (
                   <option value={key}>{contries[0][key]}</option>
                 ))}
               </select>
               <textarea
-                className="p-3 border border-black"
+                className="min-h-96 block p-4 w-full text-sm text-indigo-900
+                 bg-indigo-50 border border-indigo-300  focus:ring-indigo-500 focus:border-indigo-500 resize-none"
                 name=""
                 id=""
                 value={textAreaTo}
+                placeholder={text}
                 onChange={(e) => setTextAreaTo(e.target.value)}
               ></textarea>
             </div>
@@ -92,15 +106,18 @@ function App() {
                 onChange={(e) => setSelectTo(e.target.value)}
                 name=""
                 id=""
-                className="p-3 border
-               border-black min-w-full "
+                className="
+                min-w-full block w-full p-3 text-sm
+                 text-indigo-900 bg-indigo-50 border
+                  border-indigo-300  focus:ring-indigo-500 focus:border-indigo-500"
               >
                 {Object.keys(contriesFrom[0]).map((key, index) => (
                   <option value={key}>{contriesFrom[0][key]}</option>
                 ))}
               </select>
               <textarea
-                className="p-3 border border-black "
+                className="min-h-96 block p-4 w-full text-sm text-indigo-900
+                 bg-indigo-50 border border-indigo-300  focus:ring-indigo-500 focus:border-indigo-500 resize-none"
                 name=""
                 id=""
                 value={textAreaFrom}
@@ -110,13 +127,19 @@ function App() {
           </div>
           <button
             onClick={handletranslate}
-            className="bg-indigo-600 w-full mt-3 py-2 text-white font-semibold rounded-lg hover:bg-indigo-300 hover:text-black hover:font-semibold "
+            className="text-white w-full bg-gradient-to-br
+             from-purple-600 to-blue-500
+              hover:bg-gradient-to-bl 
+              focus:ring-4 focus:outline-none
+               focus:ring-blue-300
+                dark:focus:ring-blue-800 
+                font-medium rounded-lg text-sm 
+                px-5 py-2.5 text-center me-2 my-2 "
           >
             TRADUZIR
           </button>
         </div>
       </div>
-      <TesseractApp />
     </div>
   );
 }
