@@ -3,6 +3,8 @@ import { MyContext } from "../context/ContextApp";
 
 import Tesseract from "tesseract.js";
 
+import { RiCloseLargeLine } from "react-icons/ri";
+
 export function TesseractApp() {
   const { text, setText } = useContext(MyContext);
   const [img, setImg] = useState();
@@ -30,10 +32,16 @@ export function TesseractApp() {
         console.log(error);
       });
   }
+
+  function closedImg(event) {
+    setImg("");
+    setText("");
+  }
+
   return (
     <div
       className="flex flex-col items-center w-auto
-    p-3 bg-white shadow-black shadow-lg"
+    p-3 bg-white shadow-black shadow-sm h-5/6"
     >
       <div className="min-w-96">
         <h1
@@ -78,14 +86,27 @@ export function TesseractApp() {
             />
           </label>
         </div>
-
         {img && (
-          <div className="flex items-center justify-center my-4">
-            <img
-              src={img}
-              className="max-w-72 max-h-72 flex items-center justify-center"
-              alt="tranformar img em texto"
-            />
+          <div className="flex items-center justify-center my-4 relative">
+            <div className="flex items-center justify-center relative">
+              <img
+                src={img}
+                className="max-w-72 max-h-72 flex items-center justify-center"
+                alt="tranformar img em texto"
+              />
+              <button onClick={closedImg}>
+                <RiCloseLargeLine
+                  size={40}
+                  color="white"
+                  className="absolute top-1/2
+                   left-1/2 -translate-x-1/2
+                   opacity-50
+                    -translate-y-1/2 bg-indigo-400
+                     rounded-full p-1 cursor-pointer
+                     hover:bg-gray-900"
+                />
+              </button>
+            </div>
           </div>
         )}
       </div>
